@@ -68,6 +68,13 @@ export default function DashboardAppPage() {
                 </Typography>
 
                 <Grid container spacing={3}>
+
+                    {consumeCurrentValues.map(consumeCurrent => (
+                        <Grid item xs={3} sm={6} md={3}>
+                            <AppConsumeCurrentSummary key={consumeCurrent.id_cc} title={consumeCurrent.name_room_cc} total={consumeCurrent.current_temperature_cc} color={consumeCurrent.state_color_cc} icon={'ant-design:bug-filled'} />
+                        </Grid>
+                    ))}
+
                     <Grid item xs={12} md={6} lg={12}>
                         <AppSavingsChart
                             title="Erspannise im Jahr 2022"
@@ -83,15 +90,6 @@ export default function DashboardAppPage() {
                             ]}
                         />
                     </Grid>
-
-                    <Grid item xs={12} sm={6} md={12}>
-                        {consumeCurrentValues.map(consumeCurrent => (
-                            <AppConsumeCurrentSummary key={consumeCurrent.id_cc} title={consumeCurrent.name_room_cc} total={consumeCurrent.current_temperature_cc} color={consumeCurrent.state_color_cc} icon={'ant-design:bug-filled'} />
-                        ))}
-                    </Grid>
-
-
-
                 </Grid>
 
 
