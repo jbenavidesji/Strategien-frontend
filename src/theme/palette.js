@@ -70,6 +70,33 @@ const ERROR = {
   contrastText: '#fff',
 };
 
+const STABLE = {
+  lighter: '#E9FCD4',
+  light: '#AAF27F',
+  main: '#54D62C',
+  dark: '#229A16',
+  darker: '#08660D',
+  contrastText: GREY[800],
+};
+
+const HOT = {
+  lighter: '#FFE7D9',
+  light: '#FFA48D',
+  main: '#FF4842',
+  dark: '#B72136',
+  darker: '#7A0C2E',
+  contrastText: '#fff',
+};
+
+const COLD = {
+  lighter: '#D0F2FF',
+  light: '#74CAFF',
+  main: '#1890FF',
+  dark: '#0C53B7',
+  darker: '#04297A',
+  contrastText: '#fff',
+};
+
 const palette = {
   common: { black: '#000', white: '#fff' },
   primary: PRIMARY,
@@ -79,6 +106,9 @@ const palette = {
   warning: WARNING,
   error: ERROR,
   grey: GREY,
+  cold: COLD,
+  hot: HOT,
+  stable: STABLE,
   divider: alpha(GREY[500], 0.24),
   text: {
     primary: GREY[800],
