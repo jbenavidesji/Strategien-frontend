@@ -24,13 +24,12 @@ const StyledIcon = styled('div')(({ theme }) => ({
 
 AppConsumeCurrentSummary.propTypes = {
     color: PropTypes.string,
-    icon: PropTypes.string,
     title: PropTypes.string.isRequired,
     total: PropTypes.number.isRequired,
     sx: PropTypes.object,
 };
 
-export default function AppConsumeCurrentSummary({ title, total, icon, color = 'primary', sx, ...other }) {
+export default function AppConsumeCurrentSummary({ title, total, color = 'primary', sx, ...other }) {
     return (
         <Card
             sx={{
@@ -43,19 +42,6 @@ export default function AppConsumeCurrentSummary({ title, total, icon, color = '
             }}
             {...other}
         >
-            <StyledIcon
-                sx={{
-                    color: (theme) => theme.palette[color].dark,
-                    backgroundImage: (theme) =>
-                        `linear-gradient(135deg, ${alpha(theme.palette[color].dark, 0)} 0%, ${alpha(
-                            theme.palette[color].dark,
-                            0.24
-                        )} 100%)`,
-                }}
-            >
-                <Iconify icon={icon} width={24} height={24} />
-            </StyledIcon>
-
             <Typography variant="h3">{fShortenNumber(total)}&deg;</Typography>
 
             <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>

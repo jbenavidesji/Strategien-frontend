@@ -76,18 +76,15 @@ export default function DashboardAppPage() {
             </Helmet>
 
             <Container maxWidth="xl">
-                <Typography variant="h3" sx={{ mb: 5 }}>
-                  Smart Heating
-                </Typography>
                 <Typography variant="h4" sx={{ mb: 5 }}>
-                  Übersicht
+                  Hallo, Willkommen
                 </Typography>
 
                 <Grid container spacing={3}>
 
                     {consumeCurrentValues.map(consumeCurrent => (
                         <Grid key={consumeCurrent.id_cc} item xs={3} sm={6} md={3}>
-                            <AppConsumeCurrentSummary title={consumeCurrent.name_room_cc} total={consumeCurrent.current_temperature_cc} color={consumeCurrent.state_color_cc} icon={'ant-design:bug-filled'} />
+                            <AppConsumeCurrentSummary title={consumeCurrent.name_room_cc} total={consumeCurrent.current_temperature_cc} color={consumeCurrent.state_color_cc}/>
                         </Grid>
                     ))}
 
@@ -113,9 +110,8 @@ export default function DashboardAppPage() {
                             list={savingTotalData}
                         />
                     </Grid>
+
                 </Grid>
-
-
           </Container>
     </>
   );
