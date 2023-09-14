@@ -26,7 +26,7 @@ export default function AppSavingsChart({ title, subheader, chartLabels, chartDa
             y: {
                 formatter: (y) => {
                     if (typeof y !== 'undefined') {
-                        return `${y.toFixed(0)} Kw`;
+                        return `${y.toFixed(0)} kw`;
                     }
                     return y;
                 },
