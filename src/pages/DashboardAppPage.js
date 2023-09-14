@@ -1,9 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import { faker } from '@faker-js/faker';
 import React, {useEffect, useState} from "react";
 // @mui
 import { useTheme } from '@mui/material/styles';
-import {Grid, Container, Typography, Divider} from '@mui/material';
+import {Grid, Container, Typography} from '@mui/material';
 // components
 import Iconify from '../components/iconify';
 // sections
