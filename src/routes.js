@@ -6,6 +6,7 @@ import SimpleLayout from './layouts/simple';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import DashboardAppPage from './pages/DashboardAppPage';
+import TippsPage from "./pages/TippsPage";
 
 // ----------------------------------------------------------------------
 
@@ -17,6 +18,7 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
+        { path: 'tipps', element: <TippsPage /> },
       ],
     },
     {
