@@ -9,7 +9,6 @@ import Iconify from '../components/iconify';
 import {
 } from '../sections/@dashboard/app';
 import AppConsumeCurrentSummary from "../sections/@dashboard/app/AppConsumeCurrentSummary";
-import {getAllHints} from "../services/HintsServices";
 import {getAllConsumeCurrent} from "../services/ConsumeCurrentServices";
 import {getAllSavings} from "../services/SavingsServices";
 import AppSavingsChart from "../sections/@dashboard/app/AppSavingsChart";
@@ -24,7 +23,6 @@ import {getAllMeasurementsSolar} from "../services/MeasurementsSolarServices";
 
 export default function DashboardAppPage() {
 
-    const [hints, setHints] = useState([])
     const [consumeCurrentValues, setConsumeCurrent] = useState([])
 
     const [savings, setSavings] = useState([])
