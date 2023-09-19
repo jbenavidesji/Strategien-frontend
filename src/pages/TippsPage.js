@@ -1,14 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import React, {useEffect, useState} from "react";
 // @mui
-import { useTheme } from '@mui/material/styles';
 import {Grid, Container, Typography, Box} from '@mui/material';
 // components
-import Iconify from '../components/iconify';
 // sections
 import {getAllHints} from "../services/HintsServices";
 import TippEntryCard from "../sections/@dashboard/tipps/TippEntryCard";
-import AppConsumeCurrentSummary from "../sections/@dashboard/app/AppConsumeCurrentSummary";
 
 
 // ----------------------------------------------------------------------
