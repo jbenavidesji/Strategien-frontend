@@ -7,26 +7,26 @@ import { useChart } from '../../../components/chart';
 
 // ----------------------------------------------------------------------
 
-AppSavingsChart.propTypes = {
+AppConsumeMeasurementsChart.propTypes = {
     title: PropTypes.string,
     subheader: PropTypes.string,
     chartData: PropTypes.array.isRequired,
     chartLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default function AppSavingsChart({ title, subheader, chartLabels, chartData, ...other }) {
+export default function AppConsumeMeasurementsChart({ title, subheader, chartLabels, chartData, ...other }) {
     const chartOptions = useChart({
         plotOptions: { bar: { columnWidth: '16%' } },
         fill: { type: chartData.map((i) => i.fill) },
         labels: chartLabels,
-        xaxis: { type: 'datetime' },
+        xaxis: { type: 'time' },
         tooltip: {
             shared: true,
             intersect: false,
             y: {
                 formatter: (y) => {
                     if (typeof y !== 'undefined') {
-                        return `${y.toFixed(0)} kw`;
+                        return `${y.toFixed(2)} kw`;
                     }
                     return y;
                 },

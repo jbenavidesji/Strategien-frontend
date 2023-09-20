@@ -1,13 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 import React, {useEffect, useState} from "react";
+
 // @mui
 import { useTheme } from '@mui/material/styles';
 import {Grid, Container, Typography} from '@mui/material';
 // components
-import Iconify from '../components/iconify';
+
 // sections
-import {
-} from '../sections/@dashboard/app';
 import AppConsumeCurrentSummary from "../sections/@dashboard/app/AppConsumeCurrentSummary";
 import {getAllConsumeCurrent} from "../services/ConsumeCurrentServices";
 import {getAllSavings} from "../services/SavingsServices";
@@ -15,9 +14,15 @@ import AppSavingsChart from "../sections/@dashboard/app/AppSavingsChart";
 import AppSavingsTotalCard from "../sections/@dashboard/app/AppSavingsTotalCard";
 import {getAllSavingsTotal} from "../services/SavingsTotalServices";
 import AppConsumeMeasurementsChart from "../sections/@dashboard/app/AppConsumeMeasurementsChart";
-import {getAllMeasurementsElectricity} from "../services/MeasurementsElectricityServices";
-import {getAllMeasurementsGas} from "../services/MeasurementsGasServices";
-import {getAllMeasurementsSolar} from "../services/MeasurementsSolarServices";
+import {getAllCmBathroom} from "../services/CmBathroomServices";
+import {getAllCmBedroom} from "../services/CmBedroomServices";
+import {getAllCmBedroom2} from "../services/CmBedroom2Services";
+import {getAllCmHallway} from "../services/CmHallway";
+import {getAllCmKitchen} from "../services/CmKitchenServices";
+import {getAllCmLivingroom} from "../services/CmLivingrommServices";
+import {getAllCmLivingroom2} from "../services/CmLivingromm2Services";
+import {getAllCmWintergarten} from "../services/CmWintergardenServices";
+
 
 // ----------------------------------------------------------------------
 
@@ -31,19 +36,35 @@ export default function DashboardAppPage() {
     const [savingsTotal, setSavingsTotal] = useState([])
     const [savingTotalData, setSavingTotalData] = useState([]);
 
-    const [measurementsElectricity, setMeasurementsElectricity] = useState([])
-    const [measurementsElectricityData, setMeasurementsElectricityData] = useState([]);
-    const [measurementsElectricityDateData, setMeasurementsElectricityDateData] = useState([]);
+    const [measurementsBathroom, setMeasurementsBathroom] = useState([])
+    const [measurementsBathroomData, setMeasurementsBathroomData] = useState([]);
+    const [measurementsBathroomTimeData, setMeasurementsBathroomTimeData] = useState([]);
 
-    const [measurementsGas, setMeasurementsGas] = useState([])
-    const [measurementsGasData, setMeasurementsGasData] = useState([]);
-    const [measurementsGasDateData, setMeasurementsGasDateData] = useState([]);
+    const [measurementsBedroom, setMeasurementsBedroom] = useState([])
+    const [measurementsBedroomData, setMeasurementsBedroomData] = useState([]);
 
-    const [measurementsSolar, setMeasurementsSolar] = useState([])
-    const [measurementsSolarData, setMeasurementsSolarData] = useState([]);
-    const [measurementsSolarDateData, setMeasurementsSolarDateData] = useState([]);
+    const [measurementsBedroom2, setMeasurementsBedroom2] = useState([])
+    const [measurementsBedroom2Data, setMeasurementsBedroom2Data] = useState([]);
+
+    const [measurementsHallway, setMeasurementsHallway] = useState([])
+    const [measurementsHallwayData, setMeasurementsHallwayData] = useState([]);
+
+    const [measurementsKitchen, setMeasurementsKitchen] = useState([])
+    const [measurementsKitchenData, setMeasurementsKitchenData] = useState([]);
+
+    const [measurementsLivingroom, setMeasurementsLivingroom] = useState([])
+    const [measurementsLivingroomData, setMeasurementsLivingroomData] = useState([]);
+
+    const [measurementsLivingroom2, setMeasurementsLivingroom2] = useState([])
+    const [measurementsLivingroom2Data, setMeasurementsLivingroom2Data] = useState([]);
+
+    const [measurementsWintergarden, setMeasurementsWintergarden] = useState([])
+    const [measurementsWintergardenData, setMeasurementsWintergardenData] = useState([]);
 
     const theme = useTheme();
+
+    const dayOfYear = new Date().toString();
+
 
 
     useEffect(() => {
@@ -52,31 +73,62 @@ export default function DashboardAppPage() {
               setConsumeCurrent(consumeCurrentValues);
           });
 
-        getAllMeasurementsElectricity()
-            .then(measurementsElectricity => {
-                setMeasurementsElectricity(measurementsElectricity);
-                const measurementsElectricityValue = measurementsElectricity.map(measurement => measurement.amount_measurements_electricity);
-                const measurementsElectricityDate = measurementsElectricity.map(measurement => measurement.date_measurements_electricity);
-                setMeasurementsElectricityData(measurementsElectricityValue);
-                setMeasurementsElectricityDateData(measurementsElectricityDate);
+        getAllCmBathroom()
+            .then(measurementsBathroom => {
+                setMeasurementsBathroom(measurementsBathroom);
+                const measurementsBathroomValue = measurementsBathroom.map(measurement => measurement.measurement_cm_bathroom);
+                const measurementsBathroomTime = measurementsBathroom.map(measurement => measurement.time_cm_bathroom);
+                setMeasurementsBathroomData(measurementsBathroomValue);
+                setMeasurementsBathroomTimeData(measurementsBathroomTime);
             });
 
-        getAllMeasurementsGas()
-            .then(measurementsGas => {
-                setMeasurementsGas(measurementsGas);
-                const measurementsGasValue = measurementsGas.map(measurement => measurement.amount_measurements_gas);
-                const measurementsGasDate = measurementsGas.map(measurement => measurement.date_measurements_gas);
-                setMeasurementsGasData(measurementsGasValue);
-                setMeasurementsGasDateData(measurementsGasDate);
+        getAllCmBedroom()
+            .then(measurementsBedroom => {
+                setMeasurementsBedroom(measurementsBedroom);
+                const measurementsBedroomValue = measurementsBedroom.map(measurement => measurement.measurement_cm_bedroom);
+                setMeasurementsBedroomData(measurementsBedroomValue);
             });
 
-        getAllMeasurementsSolar()
-            .then(measurementsSolar => {
-                setMeasurementsSolar(measurementsSolar);
-                const measurementsSolarValue = measurementsSolar.map(measurement => measurement.amount_measurements_solar);
-                const measurementsSolarDate = measurementsSolar.map(measurement => measurement.date_measurements_solar);
-                setMeasurementsSolarData(measurementsSolarValue);
-                setMeasurementsSolarDateData(measurementsSolarDate);
+        getAllCmBedroom2()
+            .then(measurementsBedroom2 => {
+                setMeasurementsBedroom2(measurementsBedroom2);
+                const measurementsBedroom2Value = measurementsBedroom2.map(measurement => measurement.measurement_cm_bedroom_2);
+                setMeasurementsBedroom2Data(measurementsBedroom2Value);
+            });
+
+        getAllCmHallway()
+            .then(measurementsHallway => {
+                setMeasurementsBedroom2(measurementsHallway);
+                const measurementsHallwayValue = measurementsHallway.map(measurement => measurement.measurement_cm_hallway);
+                setMeasurementsHallwayData(measurementsHallwayValue);
+            });
+
+        getAllCmKitchen()
+            .then(measurementsKitchen => {
+                setMeasurementsKitchen(measurementsKitchen);
+                const measurementsKitchenValue = measurementsKitchen.map(measurement => measurement.measurement_cm_kitchen);
+                setMeasurementsKitchenData(measurementsKitchenValue);
+            });
+
+        getAllCmLivingroom()
+            .then(measurementsLivingroom => {
+                setMeasurementsLivingroom(measurementsLivingroom);
+                const measurementsLivingroomValue = measurementsLivingroom.map(measurement => measurement.measurement_cm_livingroom);
+                setMeasurementsLivingroomData(measurementsLivingroomValue);
+            });
+
+        getAllCmLivingroom2()
+            .then(measurementsLivingroom2 => {
+                setMeasurementsLivingroom2(measurementsLivingroom2);
+                const measurementsLivingroom2Value = measurementsLivingroom2.map(measurement => measurement.measurement_cm_livingroom_2);
+                setMeasurementsLivingroom2Data(measurementsLivingroom2Value);
+            });
+
+        getAllCmWintergarten()
+            .then(measurementsWintergarden => {
+                setMeasurementsWintergarden(measurementsWintergarden);
+                const measurementsWintergardenValue = measurementsWintergarden.map(measurement => measurement.measurement_cm_wintergarden);
+                setMeasurementsWintergardenData(measurementsWintergardenValue);
             });
 
         getAllSavings()
@@ -122,30 +174,64 @@ export default function DashboardAppPage() {
 
                     <Grid item xs={12} md={6} lg={12}>
                         <AppConsumeMeasurementsChart
-                            title="Energieverbrauch Objekt: Bremer Str. 1 - 4. Etage"
-                            subheader="(+53%) weniger als letztes Jahr"
-                            chartLabels={measurementsElectricityDateData}
+                            title={dayOfYear}
+                            subheader="(+53%) weniger als gestern"
+                            chartLabels={measurementsBathroomTimeData}
                             chartData={[
                                 {
-                                    name: 'Strom',
+                                    name: 'Badzimmer',
                                     type: 'area',
                                     fill: 'gradient',
-                                    data: measurementsElectricityData,
+                                    data: measurementsBathroomData,
 
                                 },
                                 {
-                                    name: 'Gas',
+                                    name: 'Schlafzimmer',
                                     type: 'area',
                                     fill: 'gradient',
-                                    data: measurementsGasData,
+                                    data: measurementsBedroomData,
 
                                 },
                                 {
-                                    name: 'Solar',
+                                    name: 'Schlafzimmer 2',
                                     type: 'area',
                                     fill: 'gradient',
-                                    data: measurementsSolarData,
+                                    data: measurementsBedroom2Data,
 
+                                },
+                                {
+                                    name: 'Flur',
+                                    type: 'area',
+                                    fill: 'gradient',
+                                    data: measurementsHallwayData,
+
+                                },
+                                {
+                                    name: 'Küche',
+                                    type: 'area',
+                                    fill: 'gradient',
+                                    data: measurementsKitchenData,
+
+                                },
+                                {
+                                    name: 'Wohnzimmer',
+                                    type: 'area',
+                                    fill: 'gradient',
+                                    data: measurementsLivingroomData,
+
+                                },
+                                {
+                                    name: 'Wohnzimmer 2',
+                                    type: 'area',
+                                    fill: 'gradient',
+                                    data: measurementsLivingroom2Data,
+
+                                },
+                                {
+                                    name: 'Wintergarten',
+                                    type: 'area',
+                                    fill: 'gradient',
+                                    data: measurementsWintergardenData,
                                 },
                             ]}
                         />
