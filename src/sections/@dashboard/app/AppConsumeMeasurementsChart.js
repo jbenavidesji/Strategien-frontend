@@ -26,7 +26,7 @@ export default function AppConsumeMeasurementsChart({ title, subheader, chartLab
             y: {
                 formatter: (y) => {
                     if (typeof y !== 'undefined') {
-                        return `${y.toFixed(2)} kw`;
+                        return `${y.toFixed(2)} kWh`;
                     }
                     return y;
                 },
