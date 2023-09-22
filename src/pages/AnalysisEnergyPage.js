@@ -15,6 +15,7 @@ import AnalysisConsumeMeasurementsChart from "../sections/@dashboard/analysis/An
 import AnalysisCurrentSubject from "../sections/@dashboard/analysis/AnalysisCurrentSubject";
 import {getAllMeasurementsTypeTotal} from "../services/MeasurementsTypeTotalServices";
 import AnalysisCurrentSummary from "../sections/@dashboard/analysis/AnalysisCurrentSummary";
+import {getAllConsumeMeasurementsYearTotal} from "../services/ConsumeMeasurementsYearTotalServices";
 
 // ----------------------------------------------------------------------
 
@@ -33,6 +34,10 @@ export default function AnalysisEnergyPage() {
     const [measurementsTotal, setMeasurementsTotal] = useState([])
     const [measurementsTotalData, setMeasurementsTotalData] = useState([]);
     const [measurementsTotalCO2Data, setMeasurementsTotalCO2Data] = useState([]);
+
+    const [measurementsYearTotal, setMeasurementsYearTotal] = useState([])
+    const [measurementsYearTotalData, setMeasurementsYearTotalData] = useState([]);
+    const [measurementsYearTotalDateData, setMeasurementsYearTotalDateData] = useState([]);
 
     const theme = useTheme();
     const dayOfYear = new Date().toString();
@@ -77,6 +82,15 @@ export default function AnalysisEnergyPage() {
                     );
                     setMeasurementsTotalData(measurementsTotalSelected);
                     setMeasurementsTotalCO2Data(measurementsTotalCO2Selected);
+                });
+
+            getAllConsumeMeasurementsYearTotal()
+                .then(measurementsYearTotal => {
+                    setMeasurementsYearTotal(measurementsYearTotal);
+                    const measurementsYearTotalValue = measurementsYearTotal.map(measurement => measurement.total_consume_cmyear);
+                    const measurementsYearTotalDate = measurementsYearTotal.map(measurement => measurement.date_cmyear);
+                    setMeasurementsYearTotalData(measurementsYearTotalValue);
+                    setMeasurementsYearTotalDateData(measurementsYearTotalDate);
                 });
 
         },[]
@@ -143,6 +157,22 @@ export default function AnalysisEnergyPage() {
                             title="Aktuelle CO2 Bilanz im Vergleich zum Vorjahr"
                             subheader={dayOfYear}
                             chartData={measurementsTotalCO2Data}
+                        />
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={12}>
+                        <AnalysisConsumeMeasurementsChart
+                            title="Energieverbrauch in den vergangenen Jahren"
+                            subheader="(-22%) weniger im Durchschnitt"
+                            chartLabels={measurementsYearTotalDateData}
+                            chartData={[
+                                {
+                                    name: '2022',
+                                    type: 'area',
+                                    fill: 'fill',
+                                    data: measurementsYearTotalData,
+
+                                },
+                            ]}
                         />
                     </Grid>
                 </Grid>
