@@ -1,4 +1,4 @@
-export async function getAllSavings() {
+export async function getAllEnergyGermany() {
     try {
         const response = await fetch("http://localhost:5000/consume-energy-germany");
         return await response.json();
