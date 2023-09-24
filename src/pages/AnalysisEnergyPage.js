@@ -166,7 +166,7 @@ export default function AnalysisEnergyPage() {
                             chartLabels={measurementsYearTotalDateData}
                             chartData={[
                                 {
-                                    name: '2022',
+                                    name: '',
                                     type: 'area',
                                     fill: 'fill',
                                     data: measurementsYearTotalData,
