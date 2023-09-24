@@ -8,6 +8,7 @@ import Page404 from './pages/Page404';
 import DashboardAppPage from './pages/DashboardAppPage';
 import TippsPage from "./pages/TippsPage";
 import AnalysisEnergyPage from "./pages/AnalysisEnergyPage";
+import EnergyInformationPage from "./pages/EnergyInformationPage";
 
 // ----------------------------------------------------------------------
 
@@ -21,6 +22,7 @@ export default function Router() {
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'tipps', element: <TippsPage /> },
         { path: 'analysis', element: <AnalysisEnergyPage /> },
+        { path: 'information', element: <EnergyInformationPage /> },
       ],
     },
     {
