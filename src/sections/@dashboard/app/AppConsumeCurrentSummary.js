@@ -1,11 +1,12 @@
 // @mui
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
-import { Card, Typography } from '@mui/material';
+import {Card, Link, Typography} from '@mui/material';
+import {Link as RouterLink} from "react-router-dom";
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 // components
-import Iconify from '../../../components/iconify';
+
 
 // ----------------------------------------------------------------------
 
@@ -23,30 +24,33 @@ const StyledIcon = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 AppConsumeCurrentSummary.propTypes = {
+    id: PropTypes.number,
     color: PropTypes.string,
     title: PropTypes.string.isRequired,
     total: PropTypes.number.isRequired,
     sx: PropTypes.object,
 };
 
-export default function AppConsumeCurrentSummary({ title, total, color = 'primary', sx, ...other }) {
+export default function AppConsumeCurrentSummary({ id, title, total, color = 'primary', sx, ...other }) {
+    const linkTo = `/dashboard/rooms/${id}/${title}`;
     return (
-        <Card
-            sx={{
-                py: 5,
-                boxShadow: 0,
-                textAlign: 'center',
-                color: (theme) => theme.palette[color].darker,
-                bgcolor: (theme) => theme.palette[color].lighter,
-                ...sx,
-            }}
-            {...other}
-        >
-            <Typography variant="h3">{fShortenNumber(total)}&deg;</Typography>
-
-            <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                {title}
-            </Typography>
-        </Card>
+        <Link to={linkTo} component={RouterLink} underline="none">
+            <Card
+                sx={{
+                    py: 5,
+                    boxShadow: 0,
+                    textAlign: 'center',
+                    color: (theme) => theme.palette[color].darker,
+                    bgcolor: (theme) => theme.palette[color].lighter,
+                    ...sx,
+                }}
+                {...other}
+            >
+                <Typography variant="h3">{fShortenNumber(total)}&deg;</Typography>
+                <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
+                    {title}
+                </Typography>
+            </Card>
+        </Link>
     );
 }
