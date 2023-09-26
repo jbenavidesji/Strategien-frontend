@@ -9,6 +9,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import TippsPage from "./pages/TippsPage";
 import AnalysisEnergyPage from "./pages/AnalysisEnergyPage";
 import EnergyInformationPage from "./pages/EnergyInformationPage";
+import RoomPage from "./pages/RoomPage";
 
 // ----------------------------------------------------------------------
 
@@ -23,6 +24,7 @@ export default function Router() {
         { path: 'tipps', element: <TippsPage /> },
         { path: 'analysis', element: <AnalysisEnergyPage /> },
         { path: 'information', element: <EnergyInformationPage /> },
+        { path: 'rooms/:id/:room', element: <RoomPage /> },
       ],
     },
     {
