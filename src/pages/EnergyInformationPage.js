@@ -124,7 +124,7 @@ export default function EnergyInformationPage() {
                     <Grid item xs={12} md={6} lg={4}>
                         <AnalysisConsumeMeasurementsChart
                             title="Entwicklung der CO2-Emissionen in Osnabrück"
-                            subheader="So wurden im Jahr 2012 rund 400.000 t CO2 pro Jahr weniger ausgestoßen als noch im Jahr 1990. Dies entspricht einem Rückgang von 19,4 %"
+                            subheader="Im Jahr 2012 rund 400.000 t CO2 pro Jahr weniger als  im Jahr 1990. Dies entspricht einem Rückgang von 19,4 %"
                             chartLabels={consumeCityCO2TimeData}
                             chartData={[
                                 {
