@@ -10,6 +10,8 @@ import TippsPage from "./pages/TippsPage";
 import AnalysisEnergyPage from "./pages/AnalysisEnergyPage";
 import EnergyInformationPage from "./pages/EnergyInformationPage";
 import RoomPage from "./pages/RoomPage";
+import ProfilePage from "./pages/ProfilePage";
+import SettingsPage from "./pages/SettingsPage";
 
 // ----------------------------------------------------------------------
 
@@ -25,6 +27,8 @@ export default function Router() {
         { path: 'analysis', element: <AnalysisEnergyPage /> },
         { path: 'information', element: <EnergyInformationPage /> },
         { path: 'rooms/:id/:room', element: <RoomPage /> },
+        { path: 'profile', element: <ProfilePage /> },
+        { path: 'settings', element: <SettingsPage /> },
       ],
     },
     {

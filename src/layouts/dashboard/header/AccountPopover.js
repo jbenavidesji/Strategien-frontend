@@ -1,24 +1,24 @@
 import { useState } from 'react';
+import {Link as RouterLink} from "react-router-dom";
 // @mui
 import { alpha } from '@mui/material/styles';
-import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
+import {Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover, Link} from '@mui/material';
 // mocks_
 import account from '../../../_mock/account';
+
 
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
-    icon: 'eva:home-fill',
-  },
-  {
-    label: 'Profile',
+    label: 'Profil',
     icon: 'eva:person-fill',
+    linkTo: '/dashboard/profile',
   },
   {
-    label: 'Settings',
+    label: 'Einstellungen',
     icon: 'eva:settings-2-fill',
+    linkTo: '/dashboard/settings'
   },
 ];
 
@@ -32,8 +32,11 @@ export default function AccountPopover() {
   };
 
   const handleClose = () => {
-    setOpen(null);
+    setOpen();
   };
+
+
+  const linkToLogin = '/login';
 
   return (
     <>
@@ -78,7 +81,7 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {account.name}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
             {account.email}
@@ -89,17 +92,22 @@ export default function AccountPopover() {
 
         <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
-            <MenuItem key={option.label} onClick={handleClose}>
-              {option.label}
-            </MenuItem>
+              <Link key={option.label} to={option.linkTo} component={RouterLink} underline="none">
+                <MenuItem key={option.label} onClick={handleClose}>
+                  {option.label}
+                </MenuItem>
+              </Link>
+
           ))}
         </Stack>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
-          Logout
-        </MenuItem>
+        <Link to={linkToLogin} component={RouterLink} underline="none">
+          <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+            Logout
+          </MenuItem>
+        </Link>
       </Popover>
     </>
   );
