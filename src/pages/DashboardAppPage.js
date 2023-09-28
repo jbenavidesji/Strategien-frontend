@@ -168,7 +168,7 @@ export default function DashboardAppPage() {
 
                     {consumeCurrentValues.map(consumeCurrent => (
                         <Grid key={consumeCurrent.id_cc} item xs={3} sm={6} md={3}>
-                            <AppConsumeCurrentSummary title={consumeCurrent.name_room_cc} total={consumeCurrent.current_temperature_cc} color={consumeCurrent.state_color_cc}/>
+                            <AppConsumeCurrentSummary id={consumeCurrent.id_cc} title={consumeCurrent.name_room_cc} total={consumeCurrent.current_temperature_cc} color={consumeCurrent.state_color_cc}/>
                         </Grid>
                     ))}
 
