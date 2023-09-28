@@ -167,8 +167,8 @@ export default function AnalysisEnergyPage() {
                             chartData={[
                                 {
                                     name: '',
-                                    type: 'area',
-                                    fill: 'fill',
+                                    type: 'bar',
+                                    fill: 'gradient',
                                     data: measurementsYearTotalData,
 
                                 },
