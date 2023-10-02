@@ -174,17 +174,8 @@ export default function DashboardAppPage() {
 
                 <Grid container spacing={3}>
 
-
-
-                    <Grid  item xs={12} sm={12} md={12}>
-                        <Typography variant="h5">
-                            Übersicht über die aktuellen Temperaturen und den Energieverbrauch
-                        </Typography>
-
-                    </Grid>
-
                     {consumeCurrentValues.map(consumeCurrent => (
-                        <Grid key={consumeCurrent.id_cc} item xs={3} sm={6} md={3}>
+                        <Grid key={consumeCurrent.id_cc} item xs={6} sm={6} md={3}>
                             <AppConsumeCurrentSummary id={consumeCurrent.id_cc} title={consumeCurrent.name_room_cc} total={consumeCurrent.current_temperature_cc} color={consumeCurrent.state_color_cc}/>
                         </Grid>
                     ))}
@@ -254,21 +245,6 @@ export default function DashboardAppPage() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} md={12} lg={12}>
-                        <Typography variant="h5" sx={{ mb: 2 }}>
-                            Tipps für einen nachhaltigen und effizienten Stromverbrauch
-                        </Typography>
-
-                        <TipsCarousel hints={hintsData}/>
-                    </Grid>
-
-
-                    <Grid item xs={12} md={12} lg={12}>
-                        <Typography variant="h5">
-                            Übersicht über die Gesamteinsparungen
-                        </Typography>
-                    </Grid>
-
                     <Grid item xs={12} md={12} lg={8}>
                         <AppSavingsChart
                             title="Erspannise im Jahr 2022"
@@ -290,6 +266,14 @@ export default function DashboardAppPage() {
                             title="Erspanisse nach Art der Energie"
                             list={savingTotalData}
                         />
+                    </Grid>
+
+                    <Grid item xs={12} md={12} lg={12}>
+                        <Typography variant="h5" sx={{ mb: 2 }}>
+                            Tipps für einen nachhaltigen und effizienten Stromverbrauch
+                        </Typography>
+
+                        <TipsCarousel hints={hintsData}/>
                     </Grid>
                 </Grid>
           </Container>
