@@ -174,7 +174,9 @@ export default function DashboardAppPage() {
 
                 <Grid container spacing={3}>
 
-                    <Grid  item xs={3} sm={6} md={12}>
+
+
+                    <Grid  item xs={12} sm={12} md={12}>
                         <Typography variant="h5">
                             Übersicht über die aktuellen Temperaturen und den Energieverbrauch
                         </Typography>
@@ -252,7 +254,7 @@ export default function DashboardAppPage() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} md={6} lg={12}>
+                    <Grid item xs={12} md={12} lg={12}>
                         <Typography variant="h5" sx={{ mb: 2 }}>
                             Tipps für einen nachhaltigen und effizienten Stromverbrauch
                         </Typography>
