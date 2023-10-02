@@ -1,19 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import React, {useEffect, useState} from "react";
-
 // @mui
 import { useTheme } from '@mui/material/styles';
-import {Grid, Container, Typography, Divider} from '@mui/material';
-// components
-
+import {Grid, Container, Typography} from '@mui/material';
 // sections
 import AppConsumeCurrentSummary from "../sections/@dashboard/app/AppConsumeCurrentSummary";
-import {getAllConsumeCurrent} from "../services/ConsumeCurrentServices";
-import {getAllSavings} from "../services/SavingsServices";
 import AppSavingsChart from "../sections/@dashboard/app/AppSavingsChart";
 import AppSavingsTotalCard from "../sections/@dashboard/app/AppSavingsTotalCard";
-import {getAllSavingsTotal} from "../services/SavingsTotalServices";
 import AppConsumeMeasurementsChart from "../sections/@dashboard/app/AppConsumeMeasurementsChart";
+import TipsCarousel from "../sections/@dashboard/tipps/TipsCarousel";
+// services
+import {getAllConsumeCurrent} from "../services/ConsumeCurrentServices";
+import {getAllSavings} from "../services/SavingsServices";
+import {getAllSavingsTotal} from "../services/SavingsTotalServices";
 import {getAllCmBathroom} from "../services/CmBathroomServices";
 import {getAllCmBedroom} from "../services/CmBedroomServices";
 import {getAllCmBedroom2} from "../services/CmBedroom2Services";
@@ -22,12 +21,7 @@ import {getAllCmKitchen} from "../services/CmKitchenServices";
 import {getAllCmLivingroom} from "../services/CmLivingrommServices";
 import {getAllCmLivingroom2} from "../services/CmLivingromm2Services";
 import {getAllCmWintergarten} from "../services/CmWintergardenServices";
-import TipsCarousel from "../sections/@dashboard/tipps/TipsCarousel";
-import TippEntryCard from "../sections/@dashboard/tipps/TippEntryCard";
 import {getAllHints} from "../services/HintsServices";
-
-
-// ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
 
@@ -67,11 +61,7 @@ export default function DashboardAppPage() {
     const [hints, setHints] = useState([])
     const [hintsData, setHintsData] = useState([]);
 
-    const theme = useTheme();
-
     const dayOfYear = new Date().toString();
-
-
 
     useEffect(() => {
         getAllConsumeCurrent()
@@ -104,7 +94,7 @@ export default function DashboardAppPage() {
 
         getAllCmHallway()
             .then(measurementsHallway => {
-                setMeasurementsBedroom2(measurementsHallway);
+                setMeasurementsHallway(measurementsHallway);
                 const measurementsHallwayValue = measurementsHallway.map(measurement => measurement.measurement_cm_hallway);
                 setMeasurementsHallwayData(measurementsHallwayValue);
             });
@@ -182,9 +172,6 @@ export default function DashboardAppPage() {
                   Hallo, Willkommen
                 </Typography>
 
-
-
-
                 <Grid container spacing={3}>
 
                     <Grid  item xs={3} sm={6} md={12}>
@@ -194,14 +181,11 @@ export default function DashboardAppPage() {
 
                     </Grid>
 
-
                     {consumeCurrentValues.map(consumeCurrent => (
                         <Grid key={consumeCurrent.id_cc} item xs={3} sm={6} md={3}>
                             <AppConsumeCurrentSummary id={consumeCurrent.id_cc} title={consumeCurrent.name_room_cc} total={consumeCurrent.current_temperature_cc} color={consumeCurrent.state_color_cc}/>
                         </Grid>
                     ))}
-
-
 
                     <Grid item xs={12} md={6} lg={12}>
                         <AppConsumeMeasurementsChart
@@ -284,8 +268,6 @@ export default function DashboardAppPage() {
                     </Grid>
 
                     <Grid item xs={12} md={4} lg={8}>
-
-
                         <AppSavingsChart
                             title="Erspannise im Jahr 2022"
                             subheader="(+43%) mehr als letztes Jahr"
@@ -307,8 +289,6 @@ export default function DashboardAppPage() {
                             list={savingTotalData}
                         />
                     </Grid>
-
-
                 </Grid>
           </Container>
     </>
