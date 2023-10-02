@@ -3,21 +3,13 @@ import React from "react";
 // @mui
 import { styled } from '@mui/material/styles';
 import {Box, Typography, Divider, Card} from '@mui/material';
-// utils
-
-//
-import SvgColor from '../../../components/svg-color';
-import Iconify from '../../../components/iconify';
-
-
-// ----------------------------------------------------------------------
 
 const StyledDescription = styled('div')(({ theme }) => ({
     display: 'flex',
     flexWrap: 'wrap',
-    marginRight: 10,
-    marginLeft: 10,
-    marginBottom: 10,
+    marginRight: 20,
+    marginLeft: 20,
+    marginBottom: 20,
 }));
 
 // ----------------------------------------------------------------------
@@ -54,7 +46,10 @@ export default function TippEntryCard({ title, description, savingAmount, saving
                     <StyledDescription>
                         <Box>
                             <Typography variant="subtitle1">{savingAmount}: {savingCO2} </Typography>
-                            <Typography>{assumption}</Typography>
+                            <Typography sx={{
+                                fontSize: '14px',
+                                color: '#666',
+                            }}>{assumption}</Typography>
                         </Box>
                     </StyledDescription>
                 </Card>

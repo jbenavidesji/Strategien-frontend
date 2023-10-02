@@ -32,14 +32,9 @@ export default function TippsPage() {
                     Energiesparen im Haushalt: Die besten Tipps für den Alltag
                 </Typography>
 
-                <Box
-                    component="img"
-                    src="/assets/illustrations/saving_energy.png"
-                    sx={{ height: 260, mx: 'auto' }}
-                />
 
                 <Typography variant="subtitle1" sx={{ mb: 1 }}>
-                    Energiesparen im Haushalt geht erstaunlich leicht. Dabei lassen sich mit kleineren Verhaltensänderungen im Jahr 250 Euro und mehr sparen. Hier unsere zwölf besten Tipps zum Strom sparen mit Kühlschrank, Waschmaschine, Backofen und Co.
+                    Energiesparen im Haushalt geht erstaunlich leicht. Dabei lassen sich mit kleineren Verhaltensänderungen im Jahr 250 Euro und mehr sparen. Hier die besten Tipps zum Strom sparen mit Kühlschrank, Waschmaschine, Backofen und Co.
                 </Typography>
                 <Typography variant="caption">Quelle: Bundesministerium für Wirtschaft und Klimaschutz</Typography>
 

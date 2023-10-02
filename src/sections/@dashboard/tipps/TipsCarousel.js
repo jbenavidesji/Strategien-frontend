@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {Paper, Typography, Box} from '@mui/material';
+import {Paper, Typography, Container, Card, Grid, Box, Divider} from '@mui/material';
 import {styled} from "@mui/material/styles";
 import PropTypes from "prop-types";
 
@@ -15,7 +15,6 @@ const StyledDescription = styled('div')(({ theme }) => ({
 }));
 
 const settings = {
-
     infinite: true,
     speed: 500,
     slidesToShow: 1,
