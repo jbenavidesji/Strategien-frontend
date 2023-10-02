@@ -189,7 +189,7 @@ export default function DashboardAppPage() {
                         </Grid>
                     ))}
 
-                    <Grid item xs={12} md={6} lg={12}>
+                    <Grid item xs={12} md={12} lg={12}>
                         <AppConsumeMeasurementsChart
                             title={dayOfYear}
                             subheader="(+53%) weniger als gestern"
@@ -263,13 +263,13 @@ export default function DashboardAppPage() {
                     </Grid>
 
 
-                    <Grid item xs={12} md={4} lg={12}>
+                    <Grid item xs={12} md={12} lg={12}>
                         <Typography variant="h5">
                             Übersicht über die Gesamteinsparungen
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={12} md={4} lg={8}>
+                    <Grid item xs={12} md={12} lg={8}>
                         <AppSavingsChart
                             title="Erspannise im Jahr 2022"
                             subheader="(+43%) mehr als letztes Jahr"
