@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 
 // @mui
 import { useTheme } from '@mui/material/styles';
-import {Grid, Container, Typography} from '@mui/material';
+import {Grid, Container, Typography, Divider} from '@mui/material';
 // components
 
 // sections
@@ -22,6 +22,9 @@ import {getAllCmKitchen} from "../services/CmKitchenServices";
 import {getAllCmLivingroom} from "../services/CmLivingrommServices";
 import {getAllCmLivingroom2} from "../services/CmLivingromm2Services";
 import {getAllCmWintergarten} from "../services/CmWintergardenServices";
+import TipsCarousel from "../sections/@dashboard/tipps/TipsCarousel";
+import TippEntryCard from "../sections/@dashboard/tipps/TippEntryCard";
+import {getAllHints} from "../services/HintsServices";
 
 
 // ----------------------------------------------------------------------
@@ -60,6 +63,9 @@ export default function DashboardAppPage() {
 
     const [measurementsWintergarden, setMeasurementsWintergarden] = useState([])
     const [measurementsWintergardenData, setMeasurementsWintergardenData] = useState([]);
+
+    const [hints, setHints] = useState([])
+    const [hintsData, setHintsData] = useState([]);
 
     const theme = useTheme();
 
@@ -151,6 +157,18 @@ export default function DashboardAppPage() {
                 setSavingTotalData(savingsTotalSelected);
             });
 
+        getAllHints()
+            .then(hints => {
+                setHints(hints);
+                const hintsSelected = hints.map(hint => ({
+                    id: hint.id_hint,
+                    title: hint.title_hint,
+                    description: hint.description_hint
+                    })
+                );
+                setHintsData(hintsSelected);
+            });
+
         },[]
     )
     return (
@@ -164,13 +182,26 @@ export default function DashboardAppPage() {
                   Hallo, Willkommen
                 </Typography>
 
+
+
+
                 <Grid container spacing={3}>
+
+                    <Grid  item xs={3} sm={6} md={12}>
+                        <Typography variant="h5">
+                            Übersicht über die aktuellen Temperaturen und den Energieverbrauch
+                        </Typography>
+
+                    </Grid>
+
 
                     {consumeCurrentValues.map(consumeCurrent => (
                         <Grid key={consumeCurrent.id_cc} item xs={3} sm={6} md={3}>
                             <AppConsumeCurrentSummary id={consumeCurrent.id_cc} title={consumeCurrent.name_room_cc} total={consumeCurrent.current_temperature_cc} color={consumeCurrent.state_color_cc}/>
                         </Grid>
                     ))}
+
+
 
                     <Grid item xs={12} md={6} lg={12}>
                         <AppConsumeMeasurementsChart
@@ -237,7 +268,24 @@ export default function DashboardAppPage() {
                         />
                     </Grid>
 
+                    <Grid item xs={12} md={6} lg={12}>
+                        <Typography variant="h5" sx={{ mb: 2 }}>
+                            Tipps für einen nachhaltigen und effizienten Stromverbrauch
+                        </Typography>
+
+                        <TipsCarousel hints={hintsData}/>
+                    </Grid>
+
+
+                    <Grid item xs={12} md={4} lg={12}>
+                        <Typography variant="h5">
+                            Übersicht über die Gesamteinsparungen
+                        </Typography>
+                    </Grid>
+
                     <Grid item xs={12} md={4} lg={8}>
+
+
                         <AppSavingsChart
                             title="Erspannise im Jahr 2022"
                             subheader="(+43%) mehr als letztes Jahr"
@@ -259,6 +307,7 @@ export default function DashboardAppPage() {
                             list={savingTotalData}
                         />
                     </Grid>
+
 
                 </Grid>
           </Container>
