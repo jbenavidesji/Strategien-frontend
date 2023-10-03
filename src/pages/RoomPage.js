@@ -1,29 +1,20 @@
 import { Helmet } from 'react-helmet-async';
-import { faker } from '@faker-js/faker';
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-
 // @mui
-import { useTheme } from '@mui/material/styles';
 import {Grid, Container, Typography, Link} from '@mui/material';
 // components
-
 // sections
-import InformationCurrentConsumeBarChart from "../sections/@dashboard/information/InformationCurrentConsumeBarChart";
-// services
 import AppConsumeMeasurementsChart from "../sections/@dashboard/app/AppConsumeMeasurementsChart";
 import RoomOrderTimeline from "../sections/@dashboard/room/RoomOrderTimeline";
 import RoomHeatingControlCard from "../sections/@dashboard/room/RoomHeatingControlCard";
 import RoomInformationCard from "../sections/@dashboard/room/RoomInformationCard";
 import RoomHeatingProgramsCard from "../sections/@dashboard/room/RoomHeatingProgramsCard";
+// services
 import {getAllRoomMeasurements} from "../services/RoomMeasurementsServices";
 import {getAllRoomInformation} from "../services/RoomInformationServices";
-import {getAllSavingsTotal} from "../services/SavingsTotalServices";
 import {getAllRoomHeatingPrograms} from "../services/RoomHeatingProgramsServices";
 import {getAllRoomActions} from "../services/RoomActionsServices";
-
-
-
 // ----------------------------------------------------------------------
 
 export default function RoomPage() {
@@ -75,8 +66,9 @@ export default function RoomPage() {
                 const heatingProgramsSelected = heatingPrograms.map(program => ({
                     title: program.title_room_program,
                     time: program.time_room_program,
-                    temperature: program.temperature_room_program
-                })
+                    temperature: program.temperature_room_program,
+                    timeEnd: program.time_end_room_program,
+                    })
                 );
                 setHeatingProgramsData(heatingProgramsSelected);
             });
@@ -92,7 +84,6 @@ export default function RoomPage() {
                 );
                 setRoomActionsData(roomActionsSelected);
             });
-
         },[]
     )
     return (
@@ -100,23 +91,18 @@ export default function RoomPage() {
             <Helmet>
                 <title> Information </title>
             </Helmet>
-
             <Container maxWidth="xl">
                 <Typography variant="h4" sx={{ mb: 5 }}>
                     {nameRoom}
                 </Typography>
-
-
                 <Grid container spacing={3}>
-
-                    <Grid item xs={12} md={6} lg={8}>
+                    <Grid item xs={12} md={12} lg={8}>
                         <RoomHeatingControlCard currentTemperature={temperatureRoom} />
                     </Grid>
-                    <Grid item xs={12} md={6} lg={4}>
+                    <Grid item xs={12} md={12} lg={4}>
                         <RoomInformationCard temperature={temperatureRoom} humidity={humidityRoom} otherInformation={otherInformationRoom}/>
                     </Grid>
-
-                    <Grid item xs={12} md={6} lg={8}>
+                    <Grid item xs={12} md={12} lg={8}>
                         <AppConsumeMeasurementsChart
                             title={dayOfYear}
                             subheader="(+53%) weniger als gestern"
@@ -132,22 +118,17 @@ export default function RoomPage() {
                             ]}
                         />
                     </Grid>
-
-                    <Grid item xs={12} md={6} lg={4}>
+                    <Grid item xs={12} md={12} lg={4}>
                         <RoomOrderTimeline
                             title="Verlauf"
                             subheader="Aktionen in dem Raum in letzter Zeit"
                             list= {roomActionsData}
                         />
                     </Grid>
-
-                    <Grid item xs={12} md={6} lg={12}>
+                    <Grid item xs={12} md={12} lg={12}>
                         <RoomHeatingProgramsCard programs={heatingProgramsData} />
                     </Grid>
-
                 </Grid>
-
-
             </Container>
         </>
     );
