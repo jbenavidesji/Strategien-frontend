@@ -75,8 +75,7 @@ export default function RoomPage() {
                 const heatingProgramsSelected = heatingPrograms.map(program => ({
                     title: program.title_room_program,
                     time: program.time_room_program,
-                    temperature: program.temperature_room_program,
-                    timeEnd: program.time_end_room_program,
+                    temperature: program.temperature_room_program
                 })
                 );
                 setHeatingProgramsData(heatingProgramsSelected);
@@ -110,14 +109,14 @@ export default function RoomPage() {
 
                 <Grid container spacing={3}>
 
-                    <Grid item xs={12} md={12} lg={8}>
+                    <Grid item xs={12} md={6} lg={8}>
                         <RoomHeatingControlCard currentTemperature={temperatureRoom} />
                     </Grid>
-                    <Grid item xs={12} md={12} lg={4}>
+                    <Grid item xs={12} md={6} lg={4}>
                         <RoomInformationCard temperature={temperatureRoom} humidity={humidityRoom} otherInformation={otherInformationRoom}/>
                     </Grid>
 
-                    <Grid item xs={12} md={12} lg={8}>
+                    <Grid item xs={12} md={6} lg={8}>
                         <AppConsumeMeasurementsChart
                             title={dayOfYear}
                             subheader="(+53%) weniger als gestern"
@@ -134,7 +133,7 @@ export default function RoomPage() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} md={12} lg={4}>
+                    <Grid item xs={12} md={6} lg={4}>
                         <RoomOrderTimeline
                             title="Verlauf"
                             subheader="Aktionen in dem Raum in letzter Zeit"
@@ -142,7 +141,7 @@ export default function RoomPage() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} md={12} lg={12}>
+                    <Grid item xs={12} md={6} lg={12}>
                         <RoomHeatingProgramsCard programs={heatingProgramsData} />
                     </Grid>
 
