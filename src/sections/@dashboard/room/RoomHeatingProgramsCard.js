@@ -23,7 +23,7 @@ export default function RoomHeatingProgramsCard({ programs }) {
                                     Titel: {program.title}
                                 </Typography>
                                 <Typography gutterBottom>
-                                    Uhrzeit: {program.time}
+                                    Uhrzeit: von {program.time} bis {program.timeEnd}
                                 </Typography>
                                 <Typography gutterBottom>
                                     Ideale Temperatur: {program.temperature}°C
