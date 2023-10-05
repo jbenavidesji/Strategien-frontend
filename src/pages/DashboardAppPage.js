@@ -187,7 +187,7 @@ export default function DashboardAppPage() {
 
             <Container maxWidth="xl">
                 <Typography variant="h4" sx={{ mb: 5 }}>
-                  Hallo, Willkommen
+                    Smart Heating App | Willkommen
                 </Typography>
 
                 <Grid container spacing={3}>
