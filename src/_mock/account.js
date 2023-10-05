@@ -1,9 +1,11 @@
 // ----------------------------------------------------------------------
 
 const account = {
-  displayName: 'Jaydon Frankie',
-  email: 'demo@minimals.cc',
-  photoURL: '/assets/images/avatars/avatar_default.jpg',
+  name: 'Max Mustermann',
+  email: 'max@test.de',
+  photoURL: '',
+  city: 'Osnabrück, Deutschland',
+  direction: 'Bremer Str. 100, 49074 Osnabrück'
 };
 
 export default account;
