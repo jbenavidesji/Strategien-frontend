@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import {Paper, Typography, Container, Card, Grid, Box, Divider} from '@mui/material';
 import {styled} from "@mui/material/styles";
 import PropTypes from "prop-types";
+import InfoIcon from "@mui/icons-material/Info";
 
 const StyledDescription = styled('div')(({ theme }) => ({
     display: 'flex',

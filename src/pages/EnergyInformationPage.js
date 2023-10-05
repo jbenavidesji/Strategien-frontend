@@ -4,18 +4,18 @@ import React, {useEffect, useState} from "react";
 import { useTheme } from '@mui/material/styles';
 import {Grid, Container, Typography} from '@mui/material';
 // components
-
 // sections
 import InformationCurrentConsumeBarChart from "../sections/@dashboard/information/InformationCurrentConsumeBarChart";
+import InformationCompareChart from "../sections/@dashboard/information/InformationCompareChart";
+import AnalysisConsumeMeasurementsChart from "../sections/@dashboard/analysis/AnalysisConsumeMeasurementsChart";
 // services
 import {getAllConsumeEnergyGermany} from "../services/ConsumeEnergyGermanyServices";
-import AppConsumeMeasurementsChart from "../sections/@dashboard/app/AppConsumeMeasurementsChart";
-import {getAllCmBathroom} from "../services/CmBathroomServices";
 import {getAllEnergyConsumeCityHome} from "../services/EnergyConsumeCityHomeServices";
-import AnalysisConsumeMeasurementsChart from "../sections/@dashboard/analysis/AnalysisConsumeMeasurementsChart";
 import {getAllEnergyConsumeCityCO2} from "../services/EnergyConsumeCityCO2Services";
 import {getAllEnergyConsumeCityTotal} from "../services/EnergyConsumeCityTotalServices";
-
+import InformationCurrentPricesChart from "../sections/@dashboard/information/InformationCurrentPricesChart";
+import {getAllEnergyPriceGermany} from "../services/EnergyPriceGermanyServices";
+import InformationCurrentPriceGermanyCard from "../sections/@dashboard/information/InformationCurrentPriceGermanyCard";
 // ----------------------------------------------------------------------
 
 export default function EnergyInformationPage() {
@@ -34,6 +34,11 @@ export default function EnergyInformationPage() {
     const [consumeCityTotal, setConsumeCityTotal] = useState([])
     const [consumeCityTotalData, setConsumeCityTotalData] = useState([]);
     const [consumeCityTotalTimeData, setConsumeCityTotalTimeData] = useState([]);
+
+
+    const [priceEnergyGermany, setPriceEnergyGermany] = useState([])
+    const [priceEnergyGermanyData, setPriceEnergyGermanyData] = useState([]);
+    const [priceEnergyGermanyTimeData, setPriceEnergyGermanyTimeData] = useState([]);
 
     const theme = useTheme();
     const dayOfYear = new Date().toString();
@@ -78,6 +83,15 @@ export default function EnergyInformationPage() {
                 setConsumeCityTotalTimeData(consumeCityTotalTime);
             });
 
+        getAllEnergyPriceGermany()
+            .then(priceEnergyGermany => {
+                setPriceEnergyGermany(priceEnergyGermany);
+                const priceEnergyGermanyDataValue = priceEnergyGermany.map(price=> price.price_energy_price_germany);
+                const priceEnergyGermanyTime = priceEnergyGermany.map(price=> price.date_energy_price_germany);
+                setPriceEnergyGermanyData(priceEnergyGermanyDataValue);
+                setPriceEnergyGermanyTimeData(priceEnergyGermanyTime);
+            });
+
         },[]
     )
     return (
@@ -92,7 +106,30 @@ export default function EnergyInformationPage() {
                 </Typography>
 
                 <Grid container spacing={3}>
-                    <Grid item xs={12} md={6} lg={12}>
+                    <Grid item xs={12} md={12} lg={12}>
+                        <InformationCurrentPriceGermanyCard/>
+                    </Grid>
+
+
+                    <Grid item xs={12} md={12} lg={12}>
+                        <InformationCurrentPricesChart
+                            title="Strompreisentwicklung 2010 bis 2023"
+                            subheader="Der Strompreis in den letzten 10 Jahren (zwischen 2010 und 2020) ist – bis auf kleine Ausreißer 2013, 2015 und 2016 – kontinuierlich gestiegen. Lag er 2010 noch bei durchschnittlich 23,69 ct/kWh (Haushalt mit einem Jahresverbrauch von 3.500 kWh), liegt er zu Beginn des Jahres 2020 bereits bei 31,37 ct/kWh. Das ist eine Preissteigerung von mehr als 30 % innerhalb von 10 Jahren. (Quelle: BDEW, Stand 07/2022)"
+                            chartLabels={priceEnergyGermanyTimeData}
+                            chartData={[
+                                {
+                                    name: '',
+                                    type: 'area',
+                                    fill: 'gradient',
+                                    data: priceEnergyGermanyData,
+
+                                },
+                            ]}
+                        />
+                    </Grid>
+
+
+                    <Grid item xs={12} md={12} lg={12}>
                         <InformationCurrentConsumeBarChart
                             title="Stromverbrauch pro Kopf in Kilowattstunden in den Bundesländern"
                             subheader="Die Daten zum Stromverbrauch basieren auf dem aktuellen Stromspiegel für Deutschland.

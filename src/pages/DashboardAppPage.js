@@ -22,6 +22,9 @@ import {getAllCmLivingroom} from "../services/CmLivingrommServices";
 import {getAllCmLivingroom2} from "../services/CmLivingromm2Services";
 import {getAllCmWintergarten} from "../services/CmWintergardenServices";
 import {getAllHints} from "../services/HintsServices";
+import InformationCurrentPriceGermanyCard from "../sections/@dashboard/information/InformationCurrentPriceGermanyCard";
+import InformationCurrentNotificationCard from "../sections/@dashboard/information/InformationCurrentNotificationCard";
+import {getAllNotifications} from "../services/NotificacionsServices";
 
 export default function DashboardAppPage() {
 
@@ -60,6 +63,9 @@ export default function DashboardAppPage() {
 
     const [hints, setHints] = useState([])
     const [hintsData, setHintsData] = useState([]);
+
+    const [notifications, setNotifications] = useState([])
+    const [notificationsData, setNotificationsData] = useState([]);
 
     const dayOfYear = new Date().toString();
 
@@ -147,6 +153,18 @@ export default function DashboardAppPage() {
                 setSavingTotalData(savingsTotalSelected);
             });
 
+        getAllNotifications()
+            .then(notifications => {
+                setNotifications(notifications);
+                const notificationSelected = notifications.map(notification => ({
+                    id: notification.id_notification,
+                    description: notification.description_notification,
+                    room: notification.room_notification
+                    })
+                );
+                setNotificationsData(notificationSelected);
+            });
+
         getAllHints()
             .then(hints => {
                 setHints(hints);
@@ -173,6 +191,11 @@ export default function DashboardAppPage() {
                 </Typography>
 
                 <Grid container spacing={3}>
+
+                    <Grid item xs={12} md={12} lg={12}>
+                        <InformationCurrentNotificationCard notifications={notificationsData}/>
+                    </Grid>
+
 
                     {consumeCurrentValues.map(consumeCurrent => (
                         <Grid key={consumeCurrent.id_cc} item xs={6} sm={6} md={3}>
@@ -243,6 +266,10 @@ export default function DashboardAppPage() {
                                 },
                             ]}
                         />
+                    </Grid>
+
+                    <Grid item xs={12} md={12} lg={12}>
+                        <InformationCurrentPriceGermanyCard/>
                     </Grid>
 
                     <Grid item xs={12} md={12} lg={8}>
