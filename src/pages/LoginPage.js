@@ -65,11 +65,6 @@ export default function LoginPage() {
             <Typography variant="h4" gutterBottom>
               Anmelden
             </Typography>
-
-            <Typography variant="body2" sx={{ mb: 5 }}>
-             Haben Sie kein Konto? {''}
-              <Link variant="subtitle2">Hier starten</Link>
-            </Typography>
             <LoginForm />
           </StyledContent>
         </Container>
