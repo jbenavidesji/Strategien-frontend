@@ -296,10 +296,6 @@ export default function DashboardAppPage() {
                     </Grid>
 
                     <Grid item xs={12} md={12} lg={12}>
-                        <Typography variant="h5" sx={{ mb: 2 }}>
-                            Tipps für einen nachhaltigen und effizienten Stromverbrauch
-                        </Typography>
-
                         <TipsCarousel hints={hintsData}/>
                     </Grid>
                 </Grid>

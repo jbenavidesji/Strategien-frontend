@@ -46,8 +46,8 @@ export default function AppConsumeCurrentSummary({ id, title, total, color = 'pr
                 }}
                 {...other}
             >
-                <Typography variant="h3">{fShortenNumber(total)}&deg;</Typography>
-                <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
+                <Typography variant="h5">{fShortenNumber(total)}&deg;</Typography>
+                <Typography variant="h5">
                     {title}
                 </Typography>
             </Card>

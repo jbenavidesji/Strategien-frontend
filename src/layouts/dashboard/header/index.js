@@ -53,6 +53,7 @@ export default function Header({ onOpenNav }) {
             color: 'text.primary',
             display: { lg: 'none' },
           }}
+          id="buttonMenu" title="Menu"
         >
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>

@@ -16,7 +16,7 @@ export default function InformationCurrentNotificationCard ({notifications}){
             {notifications.map((notification) => (
             <CardContent key={notification.id} style={{ textAlign: 'center' }}>
                 <WarningIcon color="error" style={{ fontSize: 48 }} />
-                <Typography variant="h6" color="textSecondary">
+                <Typography variant="h5" color="textSecondary">
                     Raum: {notification.room}
                 </Typography>
                 <Typography variant="h5">

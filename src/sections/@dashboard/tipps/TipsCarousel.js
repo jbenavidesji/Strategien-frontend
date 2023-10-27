@@ -2,17 +2,18 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {Paper, Typography, Container, Card, Grid, Box, Divider} from '@mui/material';
+import {Paper, Typography, Container, Card, Grid, Box, Divider, CardHeader} from '@mui/material';
 import {styled} from "@mui/material/styles";
 import PropTypes from "prop-types";
-import InfoIcon from "@mui/icons-material/Info";
+
 
 const StyledDescription = styled('div')(({ theme }) => ({
     display: 'flex',
     flexWrap: 'wrap',
-    marginRight: 10,
-    marginLeft: 10,
+    marginRight: 23,
+    marginLeft: 23,
     marginBottom: 20,
+    marginTop: 10,
 }));
 
 const settings = {
@@ -33,19 +34,10 @@ function TipsCarousel({ hints }) {
             <Slider {...settings} >
                 {hints.map((hint) => (
                 <Paper key={hint.id} >
-                        <Typography
-                            variant="h5"
-                            color="inherit"
-                            sx={{
-                                py: 2,
-                                boxShadow: 0,
-                                textAlign: 'center',
-                            }}
-                        >{hint.title}
-                        </Typography>
+                    <CardHeader title={hint.title} />
                         <StyledDescription>
                             <Box>
-                                <Typography >{hint.description}</Typography>
+                                <Typography>{hint.description}</Typography>
                             </Box>
                         </StyledDescription>
                     </Paper>

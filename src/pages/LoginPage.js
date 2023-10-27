@@ -52,7 +52,7 @@ export default function LoginPage() {
       <StyledRoot>
         {mdUp && (
           <StyledSection>
-            <img src="/assets/illustrations/illustration_strategion_logo.png" alt="login" />
+            <img src="/assets/illustrations/illustration_strategion_logo.png" alt="logo strategion gmbh" />
           </StyledSection>
         )}
 

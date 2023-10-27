@@ -56,6 +56,7 @@ export default function AccountPopover() {
             },
           }),
         }}
+        id="buttonProfilSettings" title="Profil Settings"
       >
         <Avatar src={account.photoURL} alt="photoURL" />
       </IconButton>

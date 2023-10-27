@@ -59,6 +59,7 @@ export default function Nav({ openNav, onCloseNav }) {
               component="img"
               src="/assets/illustrations/illustration_strategion_logo.png"
               sx={{ width: 200, position: 'absolute', top: -50 }}
+              alt="logo strategion gmbh"
           />
         </Stack>
       </Box>
